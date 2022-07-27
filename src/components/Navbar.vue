@@ -25,7 +25,7 @@ export default defineComponent({
   },
   methods: {
     login () {
-      window.location.href = 'https://discord.com/oauth2/authorize?client_id=1001463528911274115&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fcallback&response_type=code&scope=identify%20email'
+      window.location.href = 'https://discord.com/oauth2/authorize?client_id=1001463528911274115&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fcallback&response_type=code&scope=identify%20email'
     }
   }
 })
