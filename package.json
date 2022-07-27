@@ -21,6 +21,7 @@
     "process": "^0.11.10",
     "register-service-worker": "^1.7.2",
     "superagent": "^8.0.0",
+    "util": "^0.12.4",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vue3-cookies": "^1.0.6",

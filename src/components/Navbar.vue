@@ -3,8 +3,9 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">요루플레이스</a>
             <button type="button" class="btn btn-primary discord" @click="login()">
-              <i class="fa-brands fa-discord"></i>
-              로그인 <span class="badge text-bg-secondary" v-if="role">{{role}}</span>
+              <i class="fa-brands fa-discord" v-if="!logined"></i>
+              <i class="fa-solid fa-arrow-right-from-bracket" v-if="logined"></i>
+              {{ logined ? '로그아웃' : '로그인' }} <span class="badge text-bg-secondary" v-if="role">{{role}}</span>
             </button>
         </div>
     </nav>
@@ -16,7 +17,7 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'Nav-bar',
   props: {
-    msg: String
+    logined: Boolean
   },
   data () {
     return {
@@ -25,7 +26,11 @@ export default defineComponent({
   },
   methods: {
     login () {
-      window.location.href = 'https://discord.com/oauth2/authorize?client_id=1001463528911274115&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fcallback&response_type=code&scope=identify%20email'
+      if (this.logined) {
+        alert('파링이바보')
+      } else {
+        window.location.href = 'https://discord.com/oauth2/authorize?client_id=1001463528911274115&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fcallback&response_type=code&scope=identify%20email'
+      }
     }
   }
 })

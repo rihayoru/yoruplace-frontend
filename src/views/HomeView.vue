@@ -1,12 +1,13 @@
 <template>
-  <Navbar msg="Welcome to Your Vue.js + TypeScript App"/>
+  <Navbar :logined="logined"/>
   <main class="bsod container">
-    <WelcomeMessage/>
+    <WelcomeMessage :user="user" :logined="logined"/>
     <!-- <GuestBook/> -->
   </main>
 </template>
 
 <script lang="ts">
+import Auth from '@/auth'
 import { defineComponent } from 'vue'
 import Navbar from '@/components/Navbar.vue'
 import WelcomeMessage from '@/components/WelcomeMessage.vue'
@@ -18,6 +19,22 @@ export default defineComponent({
     Navbar,
     WelcomeMessage
     // GuestBook
+  },
+  data () {
+    return {
+      user: {},
+      logined: false
+    }
+  },
+  async mounted () {
+    const data = await Auth()
+    console.log(data)
+    if (data.status) {
+      this.user = data.user
+      this.logined = true
+    } else {
+      this.logined = false
+    }
   }
 })
 </script>
