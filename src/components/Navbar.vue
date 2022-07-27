@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">요루플레이스</a>
-            <button type="button" class="btn btn-primary discord">
+            <button type="button" class="btn btn-primary discord" @click="login()">
               <i class="fa-brands fa-discord"></i>
               로그인 <span class="badge text-bg-secondary" v-if="role">{{role}}</span>
             </button>
@@ -21,6 +21,11 @@ export default defineComponent({
   data () {
     return {
       role: ''
+    }
+  },
+  methods: {
+    login () {
+      window.location.href = 'https://discord.com/oauth2/authorize?client_id=1001463528911274115&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fcallback&response_type=code&scope=identify%20email'
     }
   }
 })
