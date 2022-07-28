@@ -3,7 +3,7 @@ import { useCookies } from 'vue3-cookies'
 const { cookies } = useCookies()
 
 const getMyInfo = (token:string) =>
-  get('http://localhost:3000/auth/@me')
+  get('https://api.rlato.icu/auth/@me')
     .set('Authorization', `Bearer ${token}`)
 
 export default async function () {
@@ -13,7 +13,7 @@ export default async function () {
   } else {
     try {
       const me = await getMyInfo(token)
-      if (me.status === 200) return { status: true, user: me.body.user }
+      if (me.status === 200) return { status: true, user: me.body.user, avatar: me.body.avatar }
       else return { status: false }
     } catch {
       return { status: false }

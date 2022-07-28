@@ -20,9 +20,11 @@
     "mdb-vue-ui-kit": "^2.0.0",
     "process": "^0.11.10",
     "register-service-worker": "^1.7.2",
+    "socket.io-client": "^4.5.1",
     "superagent": "^8.0.0",
     "util": "^0.12.4",
     "vue": "^3.2.13",
+    "vue-basic-alert": "^1.1.0",
     "vue-router": "^4.0.3",
     "vue3-cookies": "^1.0.6",
     "vuex": "^4.0.0"

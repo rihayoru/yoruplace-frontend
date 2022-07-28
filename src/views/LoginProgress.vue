@@ -33,7 +33,7 @@ export default defineComponent({
       return this.$router.push('/')
     }
     const code = this.$route.query.code
-    const response = await get('http://localhost:3000/auth/callback').query({ code })
+    const response = await get('https://api.rlato.icu/auth/callback').query({ code })
     cookies.set('token', response.body.token)
     this.$router.push('/')
   }
