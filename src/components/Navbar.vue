@@ -2,18 +2,25 @@
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" @click="$router.push('/')">요루플레이스</a>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link" aria-current="page" @click="PageVerify()" :class="{'active': currentPage === 1 }">인증</a>
-            <a class="nav-link" aria-current="page" @click="PageInvite()" :class="{'active': currentPage === 2 }">서버참가</a>
-          </div>
-        </div>
-        <button type="button" class="btn btn-primary discord" @click="login()">
-          <i class="fa-brands fa-discord" v-if="!logined"></i>
-          <i class="fa-solid fa-arrow-right-from-bracket" v-if="logined"></i>
-          {{ logined ? '로그아웃' : '로그인' }}
-        <span class="badge text-bg-secondary" v-if="logined">{{user?.username}}#{{user?.discriminator}}</span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" @click="PageVerify()" :class="{'active': currentPage === 1 }">인증</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" @click="PageInvite()" :class="{'active': currentPage === 2 }">서버참가</a>
+          </li>
+        </ul>
+        <button type="button" class="btn btn-primary discord" @click="login()">
+            <i class="fa-brands fa-discord" v-if="!logined"></i>
+            <i class="fa-solid fa-arrow-right-from-bracket" v-if="logined"></i>
+            {{ logined ? '로그아웃' : '로그인' }}
+          <span class="badge text-bg-secondary" v-if="logined">{{user?.username}}#{{user?.discriminator}}</span>
+        </button>
+      </div>
     </div>
   </nav>
 </template>

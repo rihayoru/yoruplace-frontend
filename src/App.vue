@@ -36,7 +36,6 @@ export default defineComponent({
       }
     },
     async forceRerender () {
-      this.componentKey += 1
       const data = await Auth()
       if (data.status) {
         this.user = data.user
