@@ -34,8 +34,8 @@ export default defineComponent({
     try {
       const token = cookies.get('token')
       const response = await get(config.API_URL + '/auth/kakao').set('Authorization', `Bearer ${token}`).query({ code })
-      console.log(response.body)
       if (response.body.status !== 200) {
+        this.$emit('reload')
         return this.$router.push('/')
       }
       this.$router.push('/')
