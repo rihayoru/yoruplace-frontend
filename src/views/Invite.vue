@@ -1,34 +1,36 @@
 <template>
   <Navbar :user="user" :logined="logined" :avatar="avatar"/>
   <main class="bsod container">
-    <WelcomeMessage :user="user" :logined="logined" :verifeid="true"/>
-    <!-- <GuestBook/> -->
+    <Verify :user="user" :logined="logined" :type="2"/>
+    <div class="center">
+      <vue-recaptcha style="display: inline-block" sitekey="6LcvgzIhAAAAAIXKN6aZghz-zew5MwNA7LpRO1-c" @verify="invite()" />
+    </div>
   </main>
 </template>
 
 <script lang="ts">
 import Auth from '@/auth'
-// import { io } from 'socket.io-client'
 import { defineComponent } from 'vue'
 import Navbar from '@/components/Navbar.vue'
-import WelcomeMessage from '@/components/WelcomeMessage.vue'
-// import GuestBook from '@/components/GuestBook.vue'
-// const socket = io('ws://localhost:3000')
-// socket.on('connect', () => {
-//   console.log(socket.id)
-// })
+import Verify from '@/components/Verify.vue'
+import { VueRecaptcha } from 'vue-recaptcha'
 export default defineComponent({
   name: 'HomeView',
   components: {
     Navbar,
-    WelcomeMessage
-    // GuestBook
+    Verify,
+    VueRecaptcha
   },
   data () {
     return {
       user: {},
       logined: false,
       avatar: ''
+    }
+  },
+  methods: {
+    invite () {
+      alert('인증됨')
     }
   },
   async mounted () {
@@ -43,3 +45,10 @@ export default defineComponent({
   }
 })
 </script>
+
+<style>
+.center {
+  text-align: center !important;
+  padding-top: 10px;
+}
+</style>

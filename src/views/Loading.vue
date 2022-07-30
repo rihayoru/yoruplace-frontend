@@ -8,7 +8,6 @@
 
 <script lang="ts">
 /* eslint-disable camelcase */
-import Auth from '@/auth'
 import { defineComponent } from 'vue'
 import Navbar from '@/components/Navbar.vue'
 import LoadingProgress from '@/components/LoadingProgress.vue'
@@ -25,15 +24,6 @@ export default defineComponent({
     return {
       user: {},
       logined: false
-    }
-  },
-  async mounted () {
-    const data = await Auth()
-    if (data.status) {
-      this.user = data.user
-      this.logined = true
-    } else {
-      this.logined = false
     }
   }
 })

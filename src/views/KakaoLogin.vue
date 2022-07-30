@@ -9,15 +9,14 @@
 import { get } from 'superagent'
 import { config } from '@/config'
 import { defineComponent } from 'vue'
-import { useCookies } from 'vue3-cookies'
 import LoadingProgress from '@/components/LoadingProgress.vue'
+import { useCookies } from 'vue3-cookies'
 const { cookies } = useCookies()
 
 export default defineComponent({
   name: 'NotFound',
   components: {
     LoadingProgress
-    // Navbar
   },
   data () {
     return {
@@ -33,12 +32,14 @@ export default defineComponent({
     }
     const code = this.$route.query.code
     try {
-      const response = await get(config.API_URL + '/auth/callback').query({ code })
-      const { token } = response.body
-      cookies.set('token', token)
+      const token = cookies.get('token')
+      const response = await get(config.API_URL + '/auth/kakao').set('Authorization', `Bearer ${token}`).query({ code })
+      console.log(response.body)
+      if (response.body.status !== 200) {
+        return this.$router.push('/')
+      }
       this.$router.push('/')
     } catch (err) {
-      alert('로그인에 실패했습니다')
       this.$router.push('/')
     }
   }
