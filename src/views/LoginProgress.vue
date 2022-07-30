@@ -36,6 +36,7 @@ export default defineComponent({
       const response = await get(config.API_URL + '/auth/callback').query({ code })
       const { token } = response.body
       cookies.set('token', token)
+      this.$emit('reload')
       this.$router.push('/')
     } catch (err) {
       alert('로그인에 실패했습니다')

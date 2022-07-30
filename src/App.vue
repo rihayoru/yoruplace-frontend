@@ -1,6 +1,6 @@
 <template>
-  <Navbar :user="user" :logined="logined" :avatar="avatar" :current-page="current"/>
-  <router-view :me="user"/>
+  <Navbar :user="user" :logined="logined" :avatar="avatar" :current-page="current" :key="componentKey"/>
+  <router-view :me="user" v-on:reload="forceRerender()"/>
 </template>
 
 <script lang="ts">
@@ -17,7 +17,8 @@ export default defineComponent({
       user: {},
       logined: false,
       avatar: '',
-      current: 0
+      current: 0,
+      componentKey: 0
     }
   },
   methods: {
@@ -33,6 +34,17 @@ export default defineComponent({
           this.current = 2
           break
       }
+    },
+    async forceRerender () {
+      this.componentKey += 1
+      const data = await Auth()
+      if (data.status) {
+        this.user = data.user
+        this.avatar = data.avatar
+        this.logined = true
+      } else {
+        this.logined = false
+      }
     }
   },
   async mounted () {
@@ -44,7 +56,9 @@ export default defineComponent({
     } else {
       this.logined = false
     }
-    setInterval(() => { this.navbar() }, 100)
+    setInterval(() => {
+      this.navbar()
+    }, 100)
   }
 })
 
