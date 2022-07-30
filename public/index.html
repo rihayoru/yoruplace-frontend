@@ -14,11 +14,6 @@
       console.log('%c이상한 코드를 붙혀넣기를 요청받았다면 다시한번 생각해주세요', 'font-size:18px;')
       console.log('%c아무거나 여기에 붙혀넣으시면 계정 엑세스권한을 공격자에게 넘겨줄수도 있습니다', 'color:red; font-size:20px;')
     </script>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-YY50RYCT32"></script>
     <script>
@@ -27,6 +22,11 @@
       gtag('js', new Date())
       gtag('config', 'G-YY50RYCT32')
     </script>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
     <div id="app"></div>
   </body>
 </html>
