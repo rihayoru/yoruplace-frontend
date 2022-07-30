@@ -1,5 +1,4 @@
 <template>
-<Navbar/>
 <main class="bsod container">
   <h1 class="neg title"><span class="bg">요?루</span></h1>
   <p>여기에는 아무것도 없어요</p>
@@ -12,12 +11,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Navbar from '@/components/Navbar.vue'
 
 export default defineComponent({
   name: 'NotFound',
   components: {
-    Navbar
   },
   methods: {
     goBack () {

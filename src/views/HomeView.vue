@@ -1,7 +1,6 @@
 <template>
-  <Navbar :user="user" :logined="logined" :avatar="avatar"/>
   <main class="bsod container">
-    <WelcomeMessage :user="user" :logined="logined" :verifeid="true"/>
+    <WelcomeMessage :user="user" :logined="logined" :verifeid="user.kakao"/>
     <!-- <GuestBook/> -->
   </main>
 </template>
@@ -10,7 +9,6 @@
 import Auth from '@/auth'
 // import { io } from 'socket.io-client'
 import { defineComponent } from 'vue'
-import Navbar from '@/components/Navbar.vue'
 import WelcomeMessage from '@/components/WelcomeMessage.vue'
 // import GuestBook from '@/components/GuestBook.vue'
 // const socket = io('ws://localhost:3000')
@@ -20,7 +18,6 @@ import WelcomeMessage from '@/components/WelcomeMessage.vue'
 export default defineComponent({
   name: 'HomeView',
   components: {
-    Navbar,
     WelcomeMessage
     // GuestBook
   },

@@ -1,12 +1,11 @@
 <template>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" @click="$router.go(0)">요루플레이스</a>
+      <a class="navbar-brand" @click="$router.push('/')">요루플레이스</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" @click="PageHome()">홈</a>
-            <a class="nav-link active" aria-current="page" @click="PageVerify()">인증</a>
-            <a class="nav-link active" aria-current="page" @click="PageInvite()">서버참가</a>
+            <a class="nav-link" aria-current="page" @click="PageVerify()" :class="{'active': currentPage === 1 }">인증</a>
+            <a class="nav-link" aria-current="page" @click="PageInvite()" :class="{'active': currentPage === 2 }">서버참가</a>
           </div>
         </div>
         <button type="button" class="btn btn-primary discord" @click="login()">
@@ -32,7 +31,8 @@ export default defineComponent({
   props: {
     logined: Boolean,
     user: Object,
-    avatar: String
+    avatar: String,
+    currentPage: Number
   },
   data () {
     return {
@@ -52,9 +52,6 @@ export default defineComponent({
     },
     PageInvite () {
       this.$router.push('/invite')
-    },
-    PageHome () {
-      this.$router.push('/')
     }
   }
 })

@@ -6,7 +6,7 @@ import NotFound from '@/views/NotFound.vue'
 import Verify from '@/views/VerifyView.vue'
 import KakaoLogin from '@/views/KakaoLogin.vue'
 import Invite from '@/views/Invite.vue'
-// import Auth from '@/auth'
+import Auth from '@/auth'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -28,7 +28,16 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/verify',
-    component: Verify
+    component: Verify,
+    beforeEnter: async (to, from, next) => {
+      const status = await Auth()
+      if (status.status) {
+        next()
+      } else {
+        next('/')
+        alert('로그인이 필요합니다')
+      }
+    }
   },
   {
     path: '/verify/callback',
@@ -36,7 +45,16 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/invite',
-    component: Invite
+    component: Invite,
+    beforeEnter: async (to, from, next) => {
+      const status = await Auth()
+      if (status.status) {
+        next()
+      } else {
+        next('/')
+        alert('로그인이 필요합니다')
+      }
+    }
   },
   {
     path: '/:pathMatch(.*)*',

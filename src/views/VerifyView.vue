@@ -1,44 +1,34 @@
 <template>
-  <Navbar :user="user" :logined="logined" :avatar="avatar"/>
   <main class="bsod container">
-    <Verify :user="user" :logined="logined" :type="1"/>
+    <Verify :user="user" :logined="logined" :type="1" :verified="this.me?.kakao"/>
     <div class="center">
-      <img src="@/assets/img/kakao_login_medium_narrow.png" @click="KakaoLogin()"/>
+      <img src="@/assets/img/kakao_login_medium_narrow.png" @click="KakaoLogin()" :class="{'verified': this.me?.kakao }"/>
     </div>
   </main>
 </template>
 
 <script lang="ts">
-import Auth from '@/auth'
+import { config } from '@/config'
 import { defineComponent } from 'vue'
-import Navbar from '@/components/Navbar.vue'
 import Verify from '@/components/Verify.vue'
 export default defineComponent({
   name: 'HomeView',
   components: {
-    Navbar,
     Verify
   },
   data () {
     return {
       user: {},
       logined: false,
-      avatar: ''
+      verified: true
     }
+  },
+  props: {
+    me: Object
   },
   methods: {
     KakaoLogin () {
-      window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=9818ea7d25d176492a24cde6c43165e7&redirect_uri=http://localhost:8080/verify/callback&response_type=code'
-    }
-  },
-  async mounted () {
-    const data = await Auth()
-    if (data.status) {
-      this.user = data.user
-      this.avatar = data.avatar
-      this.logined = true
-    } else {
-      this.logined = false
+      if (!this.me?.kakao) window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=9818ea7d25d176492a24cde6c43165e7&redirect_uri=${config.KAKAO_CALLBACK_URI}&response_type=code`
     }
   }
 })
@@ -48,5 +38,9 @@ export default defineComponent({
 .center {
   text-align: center;
   padding-top: 10px;
+}
+.verified {
+  filter: grayscale(100%);
+  display: none;
 }
 </style>
