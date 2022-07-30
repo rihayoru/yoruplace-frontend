@@ -1,19 +1,25 @@
 <template>
-<!-- <vue-basic-alert :duration="300" :closeIn="3000" ref="alert" /> -->
-    <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" @click="$router.go(0)">요루플레이스</a>
-            <button type="button" class="btn btn-primary discord" @click="login()">
-              <i class="fa-brands fa-discord" v-if="!logined"></i>
-              <i class="fa-solid fa-arrow-right-from-bracket" v-if="logined"></i>
-              {{ logined ? '로그아웃' : '로그인' }}
-              <span class="badge text-bg-secondary" v-if="logined">{{user?.username}}#{{user?.discriminator}}</span>
-            </button>
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" @click="$router.go(0)">요루플레이스</a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="#">홈</a>
+            <a class="nav-link active" aria-current="page" href="#">인증</a>
+          </div>
         </div>
-    </nav>
+        <button type="button" class="btn btn-primary discord" @click="login()">
+          <i class="fa-brands fa-discord" v-if="!logined"></i>
+          <i class="fa-solid fa-arrow-right-from-bracket" v-if="logined"></i>
+          {{ logined ? '로그아웃' : '로그인' }}
+        <span class="badge text-bg-secondary" v-if="logined">{{user?.username}}#{{user?.discriminator}}</span>
+      </button>
+    </div>
+  </nav>
 </template>
 
 <script lang="ts">
+import { config } from '@/config'
 import { defineComponent } from 'vue'
 import { useCookies } from 'vue3-cookies'
 const { cookies } = useCookies()
@@ -37,7 +43,7 @@ export default defineComponent({
         cookies.remove('token')
         this.$router.go(0)
       } else {
-        window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=1001463528911274115&redirect_uri=https%3A%2F%2Fyoru.rlato.icu%2Fcallbck&response_type=code&scope=identify%20email'
+        window.location.href = `https://discord.com/api/oauth2/authorize?client_id=1001463528911274115&redirect_uri=${encodeURI(config.DISCORD_CALLBACK_URI)}&response_type=code&scope=identify%20email`
       }
     }
   }

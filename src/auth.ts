@@ -1,9 +1,11 @@
 import { get } from 'superagent'
 import { useCookies } from 'vue3-cookies'
+import { config } from './config'
+
 const { cookies } = useCookies()
 
 const getMyInfo = (token:string) =>
-  get('https://api.rlato.icu/auth/@me')
+  get(config.API_URL + '/auth/@me')
     .set('Authorization', `Bearer ${token}`)
 
 export default async function () {
