@@ -1,7 +1,7 @@
 <template>
 <main class="bsod container">
   <WelcomeMessage :user="user" :logined="logined" class="blur"/>
-  <LoadingProgress/>
+  <LoadingProgress />
 </main>
 </template>
 
