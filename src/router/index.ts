@@ -7,16 +7,13 @@ import Verify from '@/views/VerifyView.vue'
 import KakaoLogin from '@/views/KakaoLogin.vue'
 import Invite from '@/views/Invite.vue'
 import Auth from '@/auth'
+import NProgress from 'nprogress'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
     component: HomeView
-    // beforeEnter: async (to, from, next) => {
-    //   await Auth()
-    //   next()
-    // }
   },
   {
     path: '/loading',
@@ -30,6 +27,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/verify',
     component: Verify,
     beforeEnter: async (to, from, next) => {
+      NProgress.start()
       const status = await Auth()
       if (status.status) {
         next()
@@ -37,6 +35,7 @@ const routes: Array<RouteRecordRaw> = [
         next('/')
         alert('로그인이 필요합니다')
       }
+      NProgress.done()
     }
   },
   {
@@ -47,6 +46,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/invite',
     component: Invite,
     beforeEnter: async (to, from, next) => {
+      NProgress.start()
       const status = await Auth()
       if (status.status) {
         next()
@@ -54,6 +54,7 @@ const routes: Array<RouteRecordRaw> = [
         next('/')
         alert('로그인이 필요합니다')
       }
+      NProgress.done()
     }
   },
   {

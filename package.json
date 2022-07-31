@@ -26,12 +26,15 @@
     "util": "^0.12.4",
     "vue": "^3.2.13",
     "vue-basic-alert": "^1.1.0",
+    "vue-nprogress": "^0.2.0",
+    "vue-nprogress-ts": "^1.0.0",
     "vue-recaptcha": "^2.0.2",
     "vue-router": "^4.0.3",
     "vue3-cookies": "^1.0.6",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
+    "@types/nprogress": "^0.2.0",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.0",

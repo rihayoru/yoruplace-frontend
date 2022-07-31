@@ -7,6 +7,8 @@
 import Auth from '@/auth'
 import Navbar from '@/components/Navbar.vue'
 import { defineComponent } from 'vue'
+import NProgress from 'nprogress'
+
 export default defineComponent({
   name: 'APP',
   components: {
@@ -36,6 +38,7 @@ export default defineComponent({
       }
     },
     async forceRerender () {
+      NProgress.start()
       const data = await Auth()
       if (data.status) {
         this.user = data.user
@@ -44,9 +47,11 @@ export default defineComponent({
       } else {
         this.logined = false
       }
+      NProgress.done()
     }
   },
   async mounted () {
+    NProgress.start()
     const data = await Auth()
     if (data.status) {
       this.user = data.user
@@ -55,6 +60,7 @@ export default defineComponent({
     } else {
       this.logined = false
     }
+    NProgress.done()
     setInterval(() => {
       this.navbar()
     }, 100)
@@ -64,5 +70,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '@/assets/css/index.scss'
+@import '@/assets/css/index.scss';
+#nprogress .bar {
+  background-color: #EAACB8;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #EAACB8, 0 0 5px #EAACB8;
+}
 </style>

@@ -7,19 +7,13 @@
 
 <script lang="ts">
 import Auth from '@/auth'
-// import { io } from 'socket.io-client'
+import NProgress from 'nprogress'
 import { defineComponent } from 'vue'
 import WelcomeMessage from '@/components/WelcomeMessage.vue'
-// import GuestBook from '@/components/GuestBook.vue'
-// const socket = io('ws://localhost:3000')
-// socket.on('connect', () => {
-//   console.log(socket.id)
-// })
 export default defineComponent({
   name: 'HomeView',
   components: {
     WelcomeMessage
-    // GuestBook
   },
   data () {
     return {
@@ -29,6 +23,7 @@ export default defineComponent({
     }
   },
   async mounted () {
+    NProgress.start()
     const data = await Auth()
     if (data.status) {
       this.user = data.user
@@ -37,6 +32,7 @@ export default defineComponent({
     } else {
       this.logined = false
     }
+    NProgress.done()
   }
 })
 </script>
