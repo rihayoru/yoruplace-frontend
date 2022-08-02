@@ -35,6 +35,9 @@ export default defineComponent({
         case '/invite':
           this.current = 2
           break
+        case '/asked':
+          this.current = 3
+          break
       }
     },
     async forceRerender () {

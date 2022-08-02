@@ -6,6 +6,7 @@ import NotFound from '@/views/NotFound.vue'
 import Verify from '@/views/VerifyView.vue'
 import KakaoLogin from '@/views/KakaoLogin.vue'
 import Invite from '@/views/Invite.vue'
+import Asked from '@/views/AskedView.vue'
 import Auth from '@/auth'
 import NProgress from 'nprogress'
 
@@ -56,6 +57,10 @@ const routes: Array<RouteRecordRaw> = [
       }
       NProgress.done()
     }
+  },
+  {
+    path: '/asked',
+    component: Asked
   },
   {
     path: '/:pathMatch(.*)*',

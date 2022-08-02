@@ -13,6 +13,9 @@
           <li class="nav-item">
             <a class="nav-link" aria-current="page" @click="PageInvite()" :class="{'active': currentPage === 2 }">서버참가</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" @click="PageAsked()" :class="{'active': currentPage === 3 }">질문함</a>
+          </li>
         </ul>
         <button type="button" class="btn btn-primary discord" @click="login()">
             <i class="fa-brands fa-discord" v-if="!logined"></i>
@@ -59,6 +62,9 @@ export default defineComponent({
     },
     PageInvite () {
       this.$router.push('/invite')
+    },
+    PageAsked () {
+      this.$router.push('/asked')
     }
   }
 })

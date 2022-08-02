@@ -1,7 +1,6 @@
 <template>
   <main class="bsod container">
     <WelcomeMessage :user="user" :logined="logined" :verifeid="user.kakao"/>
-    <!-- <GuestBook/> -->
   </main>
 </template>
 

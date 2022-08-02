@@ -4,6 +4,11 @@
   src: url('@/assets/font/DungGeunMo.ttf') format('truetype');
   font-weight: 400;
 }
+@font-face {
+  font-family:'AppleSDNeo';
+  src: url('@/assets/font/AppleSDGothicNeoR.ttf') format('truetype');
+  font-weight: 400;
+}
 
 $light-grey: #e0e2f4;
 $grey: #aaaaaa;
